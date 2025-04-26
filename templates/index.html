@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gesture Recognition</h1>
+            <p class="subtitle">Real-time hand gesture recognition with audio feedback</p>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Gestures</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="camera-container">
+                <div class="video-wrapper">
+                    <img id="camera-feed" src="{{ url_for('video_feed') }}" alt="Camera Feed">
+                </div>
+                <div class="controls">
+                    <button id="start-camera" class="btn primary">
+                        <span>Start Camera</span>
+                    </button>
+                    <button id="stop-camera" class="btn secondary" disabled>
+                        <span>Stop Camera</span>
+                    </button>
+                </div>
+                <div class="audio-toggle">
+                    <input type="checkbox" id="audio-toggle" class="toggle-input">
+                    <label for="audio-toggle" class="toggle-label">
+                        <span>Audio Feedback</span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="output-container">
+                <div class="gesture-info">
+                    <h2>Recognized Gesture</h2>
+                    <div class="output-box" id="gesture-display">
+                        <span>No gesture detected</span>
+                    </div>
+                    <div class="gesture-type">
+                        <span id="gesture-type">Single Hand</span>
+                    </div>
+                    <div class="hands-status" id="hands-status">
+                        <span>No hands detected</span>
+                    </div>
+                    <div class="debug-info">
+                        <p>Confidence: <span id="confidence">0%</span></p>
+                        <p>FPS: <span id="fps">0</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Gesture Recognition System v1.0</p>
+            <p class="version">Powered by MediaPipe and Flask</p>
+        </footer>
+    </div>
+
+    <script>
+        let isCameraActive = false;
+        let lastGesture = null;
+        let lastGestureTime = 0;
+        const gestureCooldown = 1000; // 1 second cooldown
+        const pollingInterval = 200; // Poll every 200ms
+        let audioEnabled = false;
+        let audioContext = null;
+        let audioElement = null;
+
+        // Camera controls
+        document.getElementById('start-camera').addEventListener('click', async () => {
+            try {
+                isCameraActive = true;
+                document.getElementById('start-camera').disabled = true;
+                document.getElementById('stop-camera').disabled = false;
+                document.getElementById('camera-feed').style.display = 'block';
+                await updateGesture();
+            } catch (error) {
+                console.error('Error starting camera:', error);
+                isCameraActive = false;
+                document.getElementById('start-camera').disabled = false;
+                document.getElementById('stop-camera').disabled = true;
+            }
+        });
+
+        document.getElementById('stop-camera').addEventListener('click', () => {
+            isCameraActive = false;
+            document.getElementById('start-camera').disabled = false;
+            document.getElementById('stop-camera').disabled = true;
+            document.getElementById('camera-feed').style.display = 'none';
+            document.getElementById('gesture-display').textContent = 'No gesture detected';
+            document.getElementById('hands-status').textContent = 'No hands detected';
+            document.getElementById('confidence').textContent = '0%';
+            document.getElementById('fps').textContent = '0';
+        });
+
+        // Audio toggle
+        document.getElementById('audio-toggle').addEventListener('change', (e) => {
+            audioEnabled = e.target.checked;
+            if (audioEnabled && !audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        });
+
+        // Gesture update function
+        async function updateGesture() {
+            if (!isCameraActive) return;
+
+            try {
+                const response = await fetch('/get_gesture');
+                const data = await response.json();
+
+                if (data.success) {
+                    const currentTime = Date.now();
+                    const gesture = data.gesture;
+                    const confidence = data.confidence;
+                    const handsDetected = data.hands_detected;
+                    const fps = data.fps;
+
+                    // Update FPS display
+                    document.getElementById('fps').textContent = fps;
+
+                    // Update hands status
+                    const handsStatus = document.getElementById('hands-status');
+                    handsStatus.textContent = handsDetected ? 'Hand detected' : 'No hands detected';
+                    handsStatus.style.color = handsDetected ? 'var(--primary-dark)' : 'var(--text-color)';
+
+                    // Update gesture display with cooldown
+                    if (gesture && (gesture !== lastGesture || currentTime - lastGestureTime >= gestureCooldown)) {
+                        document.getElementById('gesture-display').textContent = gesture;
+                        document.getElementById('confidence').textContent = `${Math.round(confidence * 100)}%`;
+                        
+                        // Play audio if enabled
+                        if (audioEnabled && data.audio_path) {
+                            try {
+                                if (audioElement) {
+                                    audioElement.pause();
+                                    audioElement.currentTime = 0;
+                                }
+                                audioElement = new Audio(data.audio_path);
+                                await audioElement.play();
+                            } catch (error) {
+                                console.error('Error playing audio:', error);
+                            }
+                        }
+
+                        lastGesture = gesture;
+                        lastGestureTime = currentTime;
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating gesture:', error);
+            }
+
+            // Continue polling
+            setTimeout(updateGesture, pollingInterval);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any initialization code here
+        });
+    </script>
+</body>
+</html> 

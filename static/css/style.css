@@ -1,0 +1,348 @@
+:root {
+    --primary-color: #93C572;
+    --primary-dark: #7BA05B;
+    --primary-light: #B8E986;
+    --background-color: #F5F5F5;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #E0E0E0;
+    --success-color: #4CAF50;
+    --error-color: #F44336;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.camera-container, .output-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--border-color);
+}
+
+#camera-feed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+}
+
+.btn.secondary {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.audio-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--background-color);
+    transition: var(--transition);
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.gesture-info {
+    text-align: center;
+}
+
+.output-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gesture-type {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-color);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.hands-status {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+.debug-info {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 10px;
+}
+
+.debug-info p {
+    margin: 0.5rem 0;
+    color: var(--text-light);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.version {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.gesture-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.gesture-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-color);
+    border-radius: 20px;
+}
+
+.gesture-type span:first-child {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.confidence-meter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meter {
+    flex: 1;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.performance-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 10px;
+}
+
+.fps-counter, .latency {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fps-counter span:first-child, .latency span:first-child {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+#gesture-display {
+    font-size: 2rem;
+    font-weight: 500;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    color: white;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+#gesture-display span {
+    opacity: 0.9;
+}
+
+.hands-status {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-color);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    header {
+        padding: 1.5rem 0;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+} 
