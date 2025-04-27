@@ -30,10 +30,15 @@ ENV/
 *.swp
 *.swo
 
+# OS
+.DS_Store
+Thumbs.db
+
 # Project specific
 static/audio/
 *.mp3
 *.wav
+*.ogg
 
 # System files
 .DS_Store

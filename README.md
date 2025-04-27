@@ -1,37 +1,29 @@
-# Gesture Recognition System
+# BOLI - Sign Language Translation
 
-A real-time hand gesture recognition system using Python, OpenCV, and MediaPipe. This system can recognize 31 different hand gestures and provide audio feedback.
+BOLI is an innovative sign language translation application that uses computer vision and machine learning to translate sign language gestures into spoken language in real-time.
 
 ## Features
 
-- Real-time hand gesture recognition
-- 31 different gesture recognition including:
-  - Hello
-  - No
-  - Fist
-  - Point
-  - Peace
-  - Thumbs Up
-  - And many more...
+- Real-time sign language gesture recognition
+- Support for 30+ common sign language gestures
+- Two-hand gesture detection
 - Audio feedback for recognized gestures
-- Web interface for easy interaction
-- Performance metrics (FPS, latency)
+- User-friendly interface with pistachio green theme
+- Responsive design for all devices
 
-## Requirements
+## Technology Stack
 
-- Python 3.7+
-- OpenCV
-- MediaPipe
-- Flask
-- gTTS (Google Text-to-Speech)
-- NumPy
+- **Backend**: Python, Flask
+- **Computer Vision**: OpenCV, MediaPipe
+- **Frontend**: HTML, CSS, JavaScript
+- **Audio**: gTTS (Google Text-to-Speech)
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/gesture-recognition.git
-cd gesture-recognition
+git clone https://github.com/yourusername/boli.git
+cd boli
 ```
 
 2. Create a virtual environment:
@@ -45,41 +37,62 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Usage
-
-1. Start the Flask server:
+4. Run the application:
 ```bash
 python app.py
 ```
 
-2. Open your web browser and navigate to:
+5. Open your browser and navigate to:
 ```
 http://localhost:5000
 ```
 
-3. Allow camera access when prompted
-
-4. Start making gestures in front of your camera
-
 ## Project Structure
 
 ```
-gesture-recognition/
-├── app.py              # Main application file
-├── static/
+boli/
+├── app.py                 # Main Flask application
+├── gesture_recognition.py # Gesture recognition logic
+├── requirements.txt       # Project dependencies
+├── Procfile              # Heroku deployment configuration
+├── runtime.txt           # Python runtime version
+├── static/               # Static files (CSS, JS, images)
 │   ├── css/
-│   │   └── style.css   # Stylesheet
-│   └── audio/          # Generated audio files
-├── templates/
-│   └── index.html      # Web interface
-├── requirements.txt    # Python dependencies
-└── README.md          # This file
+│   └── audio/
+├── templates/            # HTML templates
+│   ├── index.html
+│   ├── index2.html
+│   ├── about.html
+│   └── gestures.html
+└── README.md            # Project documentation
 ```
+
+## Usage
+
+1. Start the application
+2. Click "Start Camera" to begin gesture recognition
+3. Perform sign language gestures in front of your camera
+4. The application will recognize and display the gesture
+5. Enable audio feedback to hear the recognized gestures
 
 ## Contributing
 
-Feel free to submit issues and enhancement requests!
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Team
+
+- Shriyansh Soni (Team Leader)
+- Uday Rajput
+- Gourav Jaiswal
+- Adarsh Kalmodiya
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- MediaPipe for hand tracking
+- OpenCV for computer vision
+- Flask for web framework
+- Google Text-to-Speech for audio feedback 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BOLI - Sign Language Translation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_.css') }}">
+    <style>
+        .welcome-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .welcome-header {
+            margin-bottom: 3rem;
+        }
+
+        .welcome-header h1 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .welcome-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .welcome-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .welcome-btn.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .welcome-btn.primary:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BOLI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/welcome" class="active">Welcome</a>
+                <a href="/">Home</a>
+                <a href="/gestures">Gestures</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <main class="welcome-container">
+            <div class="welcome-header">
+                <h1>Welcome to BOLI</h1>
+                <p>Your journey to breaking communication barriers starts here. Learn, practice, and master sign language translation with our innovative technology.</p>
+            </div>
+
+            <div class="welcome-buttons">
+                <a href="/gestures" class="welcome-btn">Learn Gestures</a>
+                <a href="/" class="welcome-btn primary">Start Demo</a>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BOLI</h3>
+                    <p>Let's talk - Breaking communication barriers</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Code crafters</h3>
+                    <span>Shriyansh Soni (Team Leader)</span>
+                    <span>Uday Rajput</span>
+                    <span>Gourav Jaiswal</span>
+                    <span>Adarsh Kalmodiya</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

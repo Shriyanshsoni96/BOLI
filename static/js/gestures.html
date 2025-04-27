@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Gestures - Sign Language Translation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gestures-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gestures-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gestures-header h1 {
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gestures-header p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gestures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gesture-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gesture-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gesture-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gesture-content {
+            padding: 1.5rem;
+        }
+
+        .gesture-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .gesture-content p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .gesture-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .gesture-tag {
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-color);
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            background: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h1>SignSpeak</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gestures.html" class="active">Learn Gestures</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="gestures-container">
+        <div class="gestures-header">
+            <h1>Learn Sign Language Gestures</h1>
+            <p>Explore our comprehensive collection of sign language gestures. Click on any gesture to learn more about it.</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search gestures...">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <div class="category-filter">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Alphabet</button>
+            <button class="category-btn">Numbers</button>
+            <button class="category-btn">Common Words</button>
+            <button class="category-btn">Emotions</button>
+        </div>
+
+        <div class="gestures-grid">
+            <!-- Gesture Card 1 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture1.jpg" alt="Hello Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Hello</h3>
+                    <p>A friendly greeting gesture used to say hello in sign language.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Greeting</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 2 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture2.jpg" alt="Thank You Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Thank You</h3>
+                    <p>Express gratitude with this common sign language gesture.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Politeness</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 3 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture3.jpg" alt="Please Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Please</h3>
+                    <p>Learn how to say please in sign language.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Politeness</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 4 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture4.jpg" alt="Yes Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Yes</h3>
+                    <p>A simple gesture to express agreement or affirmation.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Basic</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 5 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture5.jpg" alt="No Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>No</h3>
+                    <p>A gesture to express disagreement or negation.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Basic</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 6 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture6.jpg" alt="Goodbye Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Goodbye</h3>
+                    <p>A farewell gesture used when parting ways.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Greeting</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 7 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture7.jpg" alt="Help Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Help</h3>
+                    <p>A gesture to request assistance or support.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Emergency</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 8 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture8.jpg" alt="Water Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Water</h3>
+                    <p>A gesture to indicate water or request a drink.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 9 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture9.jpg" alt="Food Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Food</h3>
+                    <p>A gesture to indicate food or hunger.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 10 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture10.jpg" alt="Happy Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Happy</h3>
+                    <p>A gesture to express happiness or joy.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Emotions</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 11 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture11.jpg" alt="Sad Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Sad</h3>
+                    <p>A gesture to express sadness or disappointment.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Emotions</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 12 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture12.jpg" alt="Angry Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Angry</h3>
+                    <p>A gesture to express anger or frustration.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Emotions</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 13 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture13.jpg" alt="Letter A" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Letter A</h3>
+                    <p>The sign for the letter A in the alphabet.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Alphabet</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 14 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture14.jpg" alt="Letter B" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Letter B</h3>
+                    <p>The sign for the letter B in the alphabet.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Alphabet</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 15 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture15.jpg" alt="Number 1" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Number 1</h3>
+                    <p>The sign for the number one.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Numbers</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 16 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture16.jpg" alt="Number 2" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Number 2</h3>
+                    <p>The sign for the number two.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Numbers</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 17 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture17.jpg" alt="Time Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Time</h3>
+                    <p>A gesture to ask about or indicate time.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Questions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 18 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture18.jpg" alt="Name Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Name</h3>
+                    <p>A gesture to ask someone's name or introduce yourself.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Questions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 19 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture19.jpg" alt="Love Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Love</h3>
+                    <p>A gesture to express love or affection.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Emotions</span>
+                        <span class="gesture-tag">Common Words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Card 20 -->
+            <div class="gesture-card">
+                <img src="https://example.com/gesture20.jpg" alt="Family Gesture" class="gesture-image">
+                <div class="gesture-content">
+                    <h3>Family</h3>
+                    <p>A gesture to indicate family or relatives.</p>
+                    <div class="gesture-tags">
+                        <span class="gesture-tag">Common Words</span>
+                        <span class="gesture-tag">Basic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

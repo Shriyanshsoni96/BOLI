@@ -3,153 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gesture Library - Boli</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Learn Gestures - BOLI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_.css') }}">
+    <style>
+        .gestures-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gestures-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gestures-header h1 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gestures-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gestures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gesture-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .gesture-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gesture-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gesture-content {
+            padding: 1.5rem;
+        }
+
+        .gesture-content h3 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .gesture-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .gesture-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .gesture-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            background: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-color: transparent;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Boli</h1>
-            <p class="subtitle">Advanced Sign Language Translation</p>
-            <nav class="main-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/gestures" class="nav-link active">Gestures</a>
-                <a href="/about" class="nav-link">About</a>
-            </nav>
-        </header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BOLI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/welcome">Welcome</a>
+                <a href="/">Home</a>
+                <a href="/gestures" class="active">Gestures</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
 
-        <main class="main-content">
-            <section class="gesture-library">
-                <h2>Gesture Library</h2>
-                <p class="library-intro">Learn about the gestures that Boli can recognize. Each gesture is carefully designed to be intuitive and easy to perform.</p>
-                
-                <div class="gesture-categories">
-                    <!-- Basic Gestures -->
-                    <div class="category">
-                        <h3>Basic Gestures</h3>
-                        <ul class="gesture-list">
-                            <li>
-                                <strong>Thumbs Up</strong>
-                                <p>Raise your thumb while keeping other fingers closed. Means "Yes" or "Good".</p>
-                            </li>
-                            <li>
-                                <strong>Thumbs Down</strong>
-                                <p>Point your thumb downward while keeping other fingers closed. Means "No" or "Bad".</p>
-                            </li>
-                            <li>
-                                <strong>Victory</strong>
-                                <p>Raise your index and middle fingers in a V shape. Means "Peace" or "Victory".</p>
-                            </li>
-                            <li>
-                                <strong>Pointing</strong>
-                                <p>Extend your index finger while keeping other fingers closed. Means "Hello" or to point at something.</p>
-                            </li>
-                            <li>
-                                <strong>Open Palm</strong>
-                                <p>Extend all fingers with palm facing outward. Means "Help" or "Stop".</p>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Numbers -->
-                    <div class="category">
-                        <h3>Numbers</h3>
-                        <ul class="gesture-list">
-                            <li>
-                                <strong>One</strong>
-                                <p>Extend your index finger while keeping other fingers closed.</p>
-                            </li>
-                            <li>
-                                <strong>Two</strong>
-                                <p>Extend your index and middle fingers while keeping other fingers closed.</p>
-                            </li>
-                            <li>
-                                <strong>Three</strong>
-                                <p>Extend your index, middle, and ring fingers while keeping other fingers closed.</p>
-                            </li>
-                            <li>
-                                <strong>Four</strong>
-                                <p>Extend all fingers except the thumb.</p>
-                            </li>
-                            <li>
-                                <strong>Five</strong>
-                                <p>Extend all fingers including the thumb.</p>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Emotions and Actions -->
-                    <div class="category">
-                        <h3>Emotions and Actions</h3>
-                        <ul class="gesture-list">
-                            <li>
-                                <strong>Heart</strong>
-                                <p>Form a heart shape with both hands. Means "Love" or "I love you".</p>
-                            </li>
-                            <li>
-                                <strong>Wave</strong>
-                                <p>Move your hand side to side with fingers extended. Means "Goodbye" or "Hello".</p>
-                            </li>
-                            <li>
-                                <strong>Clap</strong>
-                                <p>Bring both hands together to make a clapping sound. Means "Applaud" or "Good job".</p>
-                            </li>
-                            <li>
-                                <strong>Peace</strong>
-                                <p>Form a V shape with your index and middle fingers. Means "Peace" or "Victory".</p>
-                            </li>
-                            <li>
-                                <strong>Hang Loose</strong>
-                                <p>Extend your thumb and pinky while keeping other fingers closed. Means "Hang loose" or "Aloha".</p>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Two-Hand Gestures -->
-                    <div class="category">
-                        <h3>Two-Hand Gestures</h3>
-                        <ul class="gesture-list">
-                            <li>
-                                <strong>Hello (Two Hands)</strong>
-                                <p>Wave both hands simultaneously. A more enthusiastic greeting.</p>
-                            </li>
-                            <li>
-                                <strong>Thank You</strong>
-                                <p>Place one hand over your heart and nod slightly. A sign of gratitude.</p>
-                            </li>
-                            <li>
-                                <strong>Please (Two Hands)</strong>
-                                <p>Place both hands together in a praying position. A polite request.</p>
-                            </li>
-                            <li>
-                                <strong>Sorry</strong>
-                                <p>Place one hand over your heart and make a circular motion. An apology gesture.</p>
-                            </li>
-                            <li>
-                                <strong>Welcome</strong>
-                                <p>Extend both arms outward with palms up. A welcoming gesture.</p>
-                            </li>
-                        </ul>
+        <main class="gestures-container">
+            <div class="gestures-header">
+                <h1>Learn Sign Language Gestures</h1>
+                <p>Explore our comprehensive collection of sign language gestures. Click on any gesture to learn more about it.</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search gestures...">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="category-filter">
+                <button class="category-btn active">All</button>
+                <button class="category-btn">Alphabet</button>
+                <button class="category-btn">Numbers</button>
+                <button class="category-btn">Common Words</button>
+                <button class="category-btn">Emotions</button>
+            </div>
+
+            <div class="gestures-grid">
+                {% for gesture in gestures %}
+                <div class="gesture-card">
+                    <img src="{{ url_for('static', filename='images/' + gesture.image) }}" alt="{{ gesture.name }} Gesture" class="gesture-image">
+                    <div class="gesture-content">
+                        <h3>{{ gesture.name }}</h3>
+                        <p>{{ gesture.description }}</p>
+                        <div class="gesture-tags">
+                            {% for tag in gesture.tags %}
+                            <span class="gesture-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-                
-                <div class="gesture-tips">
-                    <h3>Tips for Better Recognition</h3>
-                    <ul>
-                        <li>Ensure good lighting in the room</li>
-                        <li>Keep your hands within the camera's view</li>
-                        <li>Make gestures clearly and deliberately</li>
-                        <li>Maintain a consistent distance from the camera</li>
-                        <li>Practice each gesture to become familiar with it</li>
-                    </ul>
-                </div>
-            </section>
+                {% endfor %}
+            </div>
         </main>
 
         <footer>
-            <p>Made with ❤️ for the hearing impaired community</p>
-            <p class="version">Version 2.0 - Enhanced with Two-Hand Support</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BOLI</h3>
+                    <p>Let's talk - Breaking communication barriers</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Code crafters</h3>
+                    <span>Shriyansh Soni (Team Leader)</span>
+                    <span>Uday Rajput</span>
+                    <span>Gourav Jaiswal</span>
+                    <span>Adarsh Kalmodiya</span>
+                </div>
+            </div>
         </footer>
     </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        const gestureCards = document.querySelectorAll('.gesture-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            gestureCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category filter
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Add category filtering logic here
+            });
+        });
+    </script>
 </body>
 </html> 

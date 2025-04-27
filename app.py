@@ -143,7 +143,7 @@ def recognize_gesture(hand_landmarks):
 
     # 5. Peace
     elif index_extended and middle_extended and not any([ring_extended, pinky_extended]):
-        gesture = "Peace"
+        gesture = "victory"
         confidence = 0.8
 
     # 6. Thumbs Up
@@ -452,11 +452,55 @@ def stop_camera():
 
 @app.route('/gestures')
 def gestures():
-    return render_template('gestures.html')
+    # Sample gesture data
+    gestures_data = [
+        {
+            'name': 'Hello',
+            'description': 'A friendly greeting gesture used to say hello in sign language.',
+            'image': 'hello.jpg',
+            'tags': ['Greeting', 'Basic']
+        },
+        {
+            'name': 'Thank You',
+            'description': 'Express gratitude with this common sign language gesture.',
+            'image': 'thank_you.jpg',
+            'tags': ['Politeness', 'Basic']
+        },
+        {
+            'name': 'Yes',
+            'description': 'A gesture to express agreement or affirmation.',
+            'image': 'yes.jpg',
+            'tags': ['Basic', 'Common Words']
+        },
+        {
+            'name': 'No',
+            'description': 'A gesture to express disagreement or negation.',
+            'image': 'no.jpg',
+            'tags': ['Basic', 'Common Words']
+        },
+        {
+            'name': 'Please',
+            'description': 'Learn how to say please in sign language.',
+            'image': 'please.jpg',
+            'tags': ['Politeness', 'Basic']
+        },
+        {
+            'name': 'Help',
+            'description': 'A gesture to request assistance or support.',
+            'image': 'help.jpg',
+            'tags': ['Common Words', 'Emergency']
+        }
+    ]
+    
+    return render_template('gestures.html', gestures=gestures_data)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+@app.route('/welcome')
+def welcome():
+    return render_template('index2.html')
+
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True, port=5000) 

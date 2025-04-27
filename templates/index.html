@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gesture Recognition</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Transalte your Boli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_.css') }}">
 </head>
 <body>
     <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BOLI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/welcome">Welcome</a>
+                <a href="/">Home</a>
+                <a href="/gestures">Gestures</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
         <header>
-            <h1>Gesture Recognition</h1>
+            <h1>Translate your Boli</h1>
             <p class="subtitle">Real-time hand gesture recognition with audio feedback</p>
-            <nav class="main-nav">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Gestures</a>
-            </nav>
+            
         </header>
 
         <main class="main-content">
@@ -59,10 +72,23 @@
             </section>
         </main>
 
-        <footer>
-            <p>Gesture Recognition System v1.0</p>
-            <p class="version">Powered by MediaPipe and Flask</p>
-        </footer>
+        
+        
+      <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BOLI</h3>
+                <p>Let's talk - Breaking communication barriers</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Code crafters </h3>
+                <span>Shriyansh Soni (Team Leader)</span>
+                <span>Uday Rajput </span>
+                <span>Gourav Jaiswal</span>
+                <span>Adarsh Kalmodiya</span>
+            </div>
+        </div>
+    </footer>
     </div>
 
     <script>
@@ -78,6 +104,10 @@
         // Camera controls
         document.getElementById('start-camera').addEventListener('click', async () => {
             try {
+                const response = await fetch('/get_gesture');
+                if (!response.ok) {
+                    throw new Error('Failed to initialize camera');
+                }
                 isCameraActive = true;
                 document.getElementById('start-camera').disabled = true;
                 document.getElementById('stop-camera').disabled = false;
@@ -85,21 +115,36 @@
                 await updateGesture();
             } catch (error) {
                 console.error('Error starting camera:', error);
+                alert('Failed to start camera. Please check if your camera is connected and permissions are granted.');
                 isCameraActive = false;
                 document.getElementById('start-camera').disabled = false;
                 document.getElementById('stop-camera').disabled = true;
             }
         });
 
-        document.getElementById('stop-camera').addEventListener('click', () => {
-            isCameraActive = false;
-            document.getElementById('start-camera').disabled = false;
-            document.getElementById('stop-camera').disabled = true;
-            document.getElementById('camera-feed').style.display = 'none';
-            document.getElementById('gesture-display').textContent = 'No gesture detected';
-            document.getElementById('hands-status').textContent = 'No hands detected';
-            document.getElementById('confidence').textContent = '0%';
-            document.getElementById('fps').textContent = '0';
+        document.getElementById('stop-camera').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/stop_camera', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to stop camera');
+                }
+                isCameraActive = false;
+                document.getElementById('start-camera').disabled = false;
+                document.getElementById('stop-camera').disabled = true;
+                document.getElementById('camera-feed').style.display = 'none';
+                document.getElementById('gesture-display').textContent = 'No gesture detected';
+                document.getElementById('hands-status').textContent = 'No hands detected';
+                document.getElementById('confidence').textContent = '0%';
+                document.getElementById('fps').textContent = '0';
+            } catch (error) {
+                console.error('Error stopping camera:', error);
+                alert('Failed to stop camera properly. Please refresh the page.');
+            }
         });
 
         // Audio toggle
@@ -116,6 +161,9 @@
 
             try {
                 const response = await fetch('/get_gesture');
+                if (!response.ok) {
+                    throw new Error('Failed to get gesture data');
+                }
                 const data = await response.json();
 
                 if (data.success) {
@@ -135,7 +183,12 @@
 
                     // Update gesture display with cooldown
                     if (gesture && (gesture !== lastGesture || currentTime - lastGestureTime >= gestureCooldown)) {
-                        document.getElementById('gesture-display').textContent = gesture;
+                        const gestureDisplay = document.getElementById('gesture-display');
+                        gestureDisplay.textContent = gesture;
+                        gestureDisplay.style.animation = 'none';
+                        gestureDisplay.offsetHeight; // Trigger reflow
+                        gestureDisplay.style.animation = 'fadeIn 0.5s ease-in-out';
+
                         document.getElementById('confidence').textContent = `${Math.round(confidence * 100)}%`;
                         
                         // Play audio if enabled
@@ -149,6 +202,7 @@
                                 await audioElement.play();
                             } catch (error) {
                                 console.error('Error playing audio:', error);
+                                // Don't show alert for audio errors as they're not critical
                             }
                         }
 
@@ -158,10 +212,18 @@
                 }
             } catch (error) {
                 console.error('Error updating gesture:', error);
+                if (error.message.includes('Failed to get gesture data')) {
+                    alert('Connection to the server was lost. Please try refreshing the page.');
+                    isCameraActive = false;
+                    document.getElementById('start-camera').disabled = false;
+                    document.getElementById('stop-camera').disabled = true;
+                }
             }
 
             // Continue polling
-            setTimeout(updateGesture, pollingInterval);
+            if (isCameraActive) {
+                setTimeout(updateGesture, pollingInterval);
+            }
         }
 
         // Initialize
@@ -169,5 +231,8 @@
             // Add any initialization code here
         });
     </script>
+
+     <script src="script.js"></script>
+
 </body>
 </html> 

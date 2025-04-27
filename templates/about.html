@@ -3,48 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Boli - Sign Language Translation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>About BOLI - Sign Language Translation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_.css') }}">
+    <style>
+        .about-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header h1 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-section p {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, var(--primary-lighter), white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .team-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .team-member h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-radius: 10px;
+            color: white;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cta-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Boli</h1>
-            <p class="subtitle">Advanced Sign Language Translation</p>
-            <nav class="main-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/gestures" class="nav-link">Gestures</a>
-                <a href="/about" class="nav-link active">About</a>
-            </nav>
-        </header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BOLI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/welcome">Welcome</a>
+                <a href="/">Home</a>
+                <a href="/gestures">Gestures</a>
+                <a href="/about" class="active">About</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
 
-        <main class="main-content">
-            <section class="about-section">
-                <h2>About Boli</h2>
-                <p>Boli is an innovative sign language translation system that bridges the communication gap between the hearing impaired and the hearing world. Our mission is to make communication more accessible and inclusive for everyone.</p>
-                
-                <h3>Our Technology</h3>
-                <p>Boli uses advanced computer vision and machine learning technologies to recognize and interpret sign language gestures in real-time. The system can detect both single-hand and two-hand gestures, making it more comprehensive than traditional solutions.</p>
-                
-                <h3>Features</h3>
+        <main class="about-container">
+            <div class="about-header">
+                <h1>About BOLI</h1>
+                <p>Breaking communication barriers through innovative sign language translation technology</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>BOLI is dedicated to creating an inclusive world where communication barriers are eliminated. Our mission is to empower the hearing-impaired community by providing real-time, accurate sign language translation technology that bridges the gap between sign language and spoken language.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Key Features</h2>
                 <ul class="features-list">
-                    <li>Real-time gesture recognition</li>
-                    <li>Support for 30+ common sign language gestures</li>
-                    <li>Two-hand gesture detection</li>
-                    <li>Text-to-speech conversion</li>
-                    <li>User-friendly interface</li>
-                    <li>Comprehensive gesture library</li>
+                    <li class="feature-item">
+                        <h3>Real-time Translation</h3>
+                        <p>Instant translation of sign language gestures into spoken language with minimal latency.</p>
+                    </li>
+                    <li class="feature-item">
+                        <h3>Comprehensive Gesture Library</h3>
+                        <p>Support for 30+ common sign language gestures with high accuracy recognition.</p>
+                    </li>
+                    <li class="feature-item">
+                        <h3>Two-Hand Detection</h3>
+                        <p>Advanced technology to recognize and interpret complex two-hand gestures.</p>
+                    </li>
+                    <li class="feature-item">
+                        <h3>Audio Feedback</h3>
+                        <p>Real-time audio output to provide immediate feedback on recognized gestures.</p>
+                    </li>
                 </ul>
-                
-                <h3>Our Vision</h3>
-                <p>We envision a world where communication barriers are eliminated, and everyone can express themselves freely. Boli is just the beginning of our journey towards creating more inclusive technology solutions.</p>
-            </section>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Technology</h2>
+                <p>BOLI leverages cutting-edge computer vision and machine learning technologies to provide accurate sign language translation. Our system uses MediaPipe for hand tracking and custom gesture recognition algorithms to identify and interpret sign language gestures in real-time.</p>
+            </div>
+
+            <div class="team-section">
+                <h2>Meet the Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h3>Shriyansh Soni</h3>
+                        <p>Team Leader</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Uday Rajput</h3>
+                        <p>Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Gourav Jaiswal</h3>
+                        <p>Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Adarsh Kalmodiya</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Start Learning?</h2>
+                <p>Join us in breaking down communication barriers and making the world more accessible.</p>
+                <div class="cta-buttons">
+                    <a href="/gestures" class="cta-btn">Learn Gestures</a>
+                    <a href="/" class="cta-btn">Try Demo</a>
+                    <a href="/welcome" class="cta-btn">Get Started</a>
+                </div>
+            </div>
         </main>
 
         <footer>
-            <p>Made with ❤️ for the hearing impaired community</p>
-            <p class="version">Version 2.0 - Enhanced with Two-Hand Support</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BOLI</h3>
+                    <p>Let's talk - Breaking communication barriers</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Code crafters</h3>
+                    <span>Shriyansh Soni (Team Leader)</span>
+                    <span>Uday Rajput</span>
+                    <span>Gourav Jaiswal</span>
+                    <span>Adarsh Kalmodiya</span>
+                </div>
+            </div>
         </footer>
     </div>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html> 
