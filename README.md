@@ -122,7 +122,7 @@ git commit -m "Initial commit: BOLI Sign Language Translation Project"
 
 5. Link your local repository to GitHub:
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/boli.git
+git remote add origin https://github.com/Shriyanshsoni96/boli.git
 ```
 
 6. Push your code to GitHub:
@@ -137,5 +137,5 @@ Important Notes:
 
 After pushing, your project will be available at:
 ```
-https://github.com/YOUR_USERNAME/boli
+https://github.com/Shriyanshsoni96/boli
 ```
