@@ -11,6 +11,7 @@ BOLI is an innovative sign language translation application that uses computer v
 - User-friendly interface with pistachio green theme
 - Responsive design for all devices
 
+
 ## Technology Stack
 
 - **Backend**: Python, Flask
