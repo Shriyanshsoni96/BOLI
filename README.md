@@ -18,35 +18,6 @@ BOLI is an innovative sign language translation application that uses computer v
 - **Frontend**: HTML, CSS, JavaScript
 - **Audio**: gTTS (Google Text-to-Speech)
 
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/boli.git
-cd boli
-```
-
-2. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Run the application:
-```bash
-python app.py
-```
-
-5. Open your browser and navigate to:
-```
-http://localhost:5000
-```
-
 ## Project Structure
 
 ```
@@ -77,18 +48,7 @@ boli/
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Team
-
-- Shriyansh Soni (Team Leader)
-- Uday Rajput
-- Gourav Jaiswal
-- Adarsh Kalmodiya
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Contributions are welcome! Please feel free to submit a Pull Request
 
 ## Acknowledgments
 
